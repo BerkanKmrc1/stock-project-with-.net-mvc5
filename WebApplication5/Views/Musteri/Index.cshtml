@@ -1,0 +1,42 @@
+﻿@using WebApplication5.Models.Entity
+@model List<TBLMUSTERILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index","Musteri",FormMethod.Get))
+            {
+                 <p>
+                     <b>Search : @Html.TextBox("p")</b>
+                     <input type="submit" value="search"/>
+                 </p>
+            }
+
+<table class="table table-bordered">
+    <tr>
+        <th>MUSTERİ ID</th>
+        <th>MUSTERİ AD</th>
+        <th>MUSTERİ SOYAD</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+     <tbody>
+         @foreach(var mst in Model){
+         <tr>
+             <th>@mst.MUSTERIID</th>
+             <td>@mst.MUSTERIAD</td>
+             <td>@mst.MUSTERISOYAD</td>
+             <td><a href="/MUSTERI/SIL/@mst.MUSTERIID" class="btn btn-danger">SİL</a></td>
+             <td><a href="/MUSTERI/MusteriGetir/@mst.MUSTERIID" class="btn btn-success">GÜNCELLE</a></td>
+
+         </tr>
+
+            }
+
+
+     </tbody>
+
+</table>
+<a href="/MUSTERI/YeniMusteri/" class="btn btn-primary">YENİ MÜŞTERİ EKLE</a>
+
